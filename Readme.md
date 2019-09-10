@@ -2,4 +2,4 @@ Script basique d'insertion de points sur une trace gpx. Par défaut tous les "10
 
 Requis : Python 3 + gpxpy (pip install gpxpy)
 
-Usage : python add_gpx_points.py fichier.gpx, ou pour préciser la distance entre deux points (exemple 50m) : python add_gpx_points.py fichier.gpx 50
+Usage : `python add_gpx_points.py fichier.gpx`, ou pour préciser la distance entre deux points (exemple 50m) : `python add_gpx_points.py fichier.gpx 50`

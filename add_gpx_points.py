@@ -12,7 +12,7 @@ def distance_points(p1,p2):
 def mid_point(p1,p2,proportion=0.5):
 	return gpxpy.gpx.GPXTrackPoint(p1.latitude+(p2.latitude-p1.latitude)*proportion, p1.longitude+(p2.longitude-p1.longitude)*proportion)
 
-try : gpx_name=argv[1]
+try: gpx_name=argv[1]
 except:
 	print('Usage : python add_gpx_points.py gpx_file.gpx\n OR\n        python add_gpx_points.py gpx_file.gpx distance_between_points_approx_metres')
 	exit()
@@ -21,10 +21,10 @@ except:
 gpx_file=open(gpx_name)
 gpx=gpxpy.parse(gpx_file)
 
-try : insert_every_m=argv[2]
+try: insert_every_m=float(argv[2])
 except: insert_every_m=100
 
-insert_every=float(insert_every_m)*0.000009
+insert_every=insert_every_m*0.000009
 dont_insert_if_inferior=0.05 #dont insert point if remains less than 1+#% of distance insert_every
 
 new_gpx=gpxpy.gpx.GPX()
