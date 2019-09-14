@@ -14,7 +14,7 @@ def mid_point(p1,p2,proportion=0.5):
 
 try: gpx_name=argv[1]
 except:
-	print('Usage : python add_gpx_points.py gpx_file.gpx\n OR\n        python add_gpx_points.py gpx_file.gpx distance_between_points_approx_metres')
+	print('Usage: python add_gpx_points.py gpx_file.gpx\n OR\n       python add_gpx_points.py gpx_file.gpx distance_between_points_approx_metres')
 	exit()
 	
 
@@ -25,7 +25,7 @@ try: insert_every_m=float(argv[2])
 except: insert_every_m=100
 
 insert_every=insert_every_m*0.000009
-dont_insert_if_inferior=0.05 #dont insert point if remains less than 1+#% of distance insert_every
+DONT_INSERT_IF_INFERIOR=0.05 #dont insert point if remains less than 1+#% of distance insert_every
 
 new_gpx=gpxpy.gpx.GPX()
 
@@ -41,13 +41,13 @@ for track in gpx.tracks:
 			new_point=point
 			while last_point!=None:
 				this_interval=distance_points(last_point,new_point)
-				if (this_interval)<insert_every/(1-dont_insert_if_inferior):
-					last_point=None
-				else:
+				if (this_interval)>insert_every/(1-DONT_INSERT_IF_INFERIOR):
 					proportion=insert_every/this_interval
 					insert_point=mid_point(last_point,new_point,proportion)
 					gpx_segment.points.append(insert_point)
 					last_point=insert_point
+				else:
+					last_point=None
 			gpx_segment.points.append(point)
 
 with open(gpx_name.replace(".gpx","_inserted.gpx"),"w") as new:
